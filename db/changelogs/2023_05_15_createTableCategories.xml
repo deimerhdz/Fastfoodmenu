@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+     <changeSet id="2023051503" author="dhernandez">
+        <createTable tableName="tbl_categories">
+            <column name="id" type="serial" remarks="Identificador autoincremental">
+               <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(20)" remarks="nombre del usuario">
+               <constraints nullable="false"/>
+            </column>
+            <column name="image_id" type="int" remarks="Campo referencial de la imagen">
+               <constraints nullable="false"  unique="true" />
+            </column>
+            <column name="user_id" type="int" remarks="Campo referencial del usuario">
+               <constraints nullable="false"  />
+            </column>
+            <column name="active" type="tinyint(1)" remarks="Estado de la categoria">
+               <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="date" remarks="Fecha en la cual se creo el registro">
+               <constraints nullable="true"/>
+            </column>
+           
+            <column name="updated_at" type="date" remarks="Fecha en la cual se actualizo el registro">
+               <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+          <dropTable tableName="tbl_categories"/>  
+        </rollback>
+     </changeSet>
+
+        <changeSet author="dhernandez" id="2023051504">
+        <addForeignKeyConstraint baseColumnNames="image_id"
+            baseTableName="tbl_categories"
+            constraintName="fk_image_id"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_images"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_categories" constraintName="fk_image_id"/>
+            </rollback>
+     </changeSet>
+     <changeSet author="dhernandez" id="2023051505">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+            baseTableName="tbl_categories"
+            constraintName="fk_user_id"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_users"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_categories" constraintName="fk_user_id"/>
+            </rollback>
+     </changeSet>
+</databaseChangeLog>
