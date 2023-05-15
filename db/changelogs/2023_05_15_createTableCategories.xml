@@ -10,8 +10,8 @@
 		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
      <changeSet id="2023051503" author="dhernandez">
         <createTable tableName="tbl_categories">
-            <column name="id" type="serial" remarks="Identificador autoincremental">
-               <constraints primaryKey="true"/>
+            <column name="id" type="serial" autoIncrement="true" remarks="Identificador autoincremental">
+               <constraints primaryKey="true" />
             </column>
             <column name="name" type="varchar(20)" remarks="nombre del usuario">
                <constraints nullable="false"/>
@@ -26,11 +26,11 @@
                <constraints nullable="false"/>
             </column>
             <column name="created_at" type="date" remarks="Fecha en la cual se creo el registro">
-               <constraints nullable="true"/>
+               <constraints nullable="false"/>
             </column>
            
             <column name="updated_at" type="date" remarks="Fecha en la cual se actualizo el registro">
-               <constraints nullable="false"/>
+               <constraints nullable="true"/>
             </column>
         </createTable>
         <rollback>

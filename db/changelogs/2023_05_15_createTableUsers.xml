@@ -10,8 +10,8 @@
 		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
      <changeSet id="2023051501" author="dhernandez">
         <createTable tableName="tbl_users">
-            <column name="id" type="serial" remarks="Identificador autoincremental">
-               <constraints primaryKey="true"/>
+            <column name="id" type="serial"  autoIncrement="true" remarks="Identificador autoincremental">
+               <constraints primaryKey="true" />
             </column>
             <column name="username" type="varchar(20)" remarks="nombre del usuario">
                <constraints nullable="false"/>
@@ -27,11 +27,11 @@
                <constraints nullable="false"/>
             </column>
             <column name="created_at" type="date" remarks="Fecha en la cual se cre el registro">
-               <constraints nullable="true"/>
+               <constraints nullable="false"/>
             </column>
            
             <column name="updated_at" type="date" remarks="Campo referencial del estado del usuario">
-               <constraints nullable="false"/>
+               <constraints nullable="true"/>
             </column>
         </createTable>
         <rollback>

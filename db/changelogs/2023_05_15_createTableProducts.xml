@@ -10,7 +10,7 @@
 		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
      <changeSet id="2023051506" author="dhernandez">
         <createTable tableName="tbl_products">
-            <column name="id" type="serial" remarks="Identificador autoincremental">
+            <column name="id" type="serial" autoIncrement="true" remarks="Identificador autoincremental">
                <constraints primaryKey="true"/>
             </column>
             <column name="name" type="varchar(20)" remarks="Nombre del producto">
@@ -35,11 +35,11 @@
                <constraints nullable="false"/>
             </column>
             <column name="created_at" type="date" remarks="Fecha en la cual se creo el registro">
-               <constraints nullable="true"/>
+               <constraints nullable="false"/>
             </column>
            
             <column name="updated_at" type="date" remarks="Fecha en la cual se actualizo el registro">
-               <constraints nullable="false"/>
+               <constraints nullable="true"/>
             </column>
         </createTable>
         <rollback>
