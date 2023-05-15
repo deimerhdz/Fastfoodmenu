@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+     <changeSet id="2023051501" author="dhernandez">
+        <createTable tableName="tbl_users">
+            <column name="id" type="serial" remarks="Identificador autoincremental">
+               <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar(20)" remarks="nombre del usuario">
+               <constraints nullable="false"/>
+            </column>
+              <column name="email" type="varchar(120)" remarks="Email de usuario">
+               <constraints nullable="false" unique="true" />
+            </column>
+            <column name="password" type="varchar(255)" remarks="Clave de usuario">
+               <constraints nullable="false"/>
+            </column>
+          
+            <column name="active" type="tinyint(1)" remarks="Estado del usuario">
+               <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="date" remarks="Fecha en la cual se cre el registro">
+               <constraints nullable="true"/>
+            </column>
+           
+            <column name="updated_at" type="date" remarks="Campo referencial del estado del usuario">
+               <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+          <dropTable tableName="tbl_users"/>  
+        </rollback>
+     </changeSet>
+    
+</databaseChangeLog>

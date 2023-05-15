@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+     <changeSet id="2023051506" author="dhernandez">
+        <createTable tableName="tbl_products">
+            <column name="id" type="serial" remarks="Identificador autoincremental">
+               <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(20)" remarks="Nombre del producto">
+               <constraints nullable="false"/>
+            </column>
+             <column name="description" type="varchar(255)" remarks="Descripcion del producto">
+               <constraints nullable="false"/>
+            </column>
+            <column name="price" type="decimal(10,2)" remarks="Precio del producto">
+               <constraints nullable="false"/>
+            </column>
+            <column name="image_id" type="int"  remarks="Campo referencial de la imagen">
+               <constraints nullable="false" unique="true" />
+            </column>
+            <column name="category_id" type="int" remarks="Campo referencial de la categoria">
+               <constraints nullable="false"  />
+            </column>
+            <column name="user_id" type="int" remarks="Campo referencial del usuario">
+               <constraints nullable="false"  />
+            </column>
+            <column name="active" type="tinyint(1)" remarks="Estado del producto">
+               <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="date" remarks="Fecha en la cual se creo el registro">
+               <constraints nullable="true"/>
+            </column>
+           
+            <column name="updated_at" type="date" remarks="Fecha en la cual se actualizo el registro">
+               <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+          <dropTable tableName="tbl_products"/>  
+        </rollback>
+     </changeSet>
+
+        <changeSet author="dhernandez" id="2023051507">
+        <addForeignKeyConstraint baseColumnNames="image_id"
+            baseTableName="tbl_products"
+            constraintName="fk_imageid"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_images"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_products" constraintName="fk_imageid"/>
+            </rollback>
+     </changeSet>
+     <changeSet author="dhernandez" id="2023051508">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+            baseTableName="tbl_products"
+            constraintName="fk_userid"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_users"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_products" constraintName="fk_userid"/>
+            </rollback>
+     </changeSet>
+      <changeSet author="dhernandez" id="2023051509">
+        <addForeignKeyConstraint baseColumnNames="category_id"
+            baseTableName="tbl_products"
+            constraintName="fk_categoryid"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_categories"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_products" constraintName="fk_categoryid"/>
+            </rollback>
+     </changeSet>
+</databaseChangeLog>
