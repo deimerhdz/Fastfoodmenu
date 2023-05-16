@@ -17,6 +17,11 @@
 		<java.version>17</java.version>
 		<lombok.version>1.18.26</lombok.version>
 		 <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+
+		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		 <sonar.languages>java</sonar.languages>
+		 
+		 
 	</properties>
 	<dependencies>
 		<dependency>
@@ -58,10 +63,40 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		
 	</dependencies>
 
 	<build>
 		<plugins>
+		
+		<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.8.0.2131</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			
+			
 			<plugin>
 			        <groupId>org.apache.maven.plugins</groupId>
 			        <artifactId>maven-compiler-plugin</artifactId>
