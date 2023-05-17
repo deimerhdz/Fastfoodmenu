@@ -14,8 +14,9 @@ import com.dhernandez.fastfood.domain.repository.IUserRepository;
  *	Creado en 15/05/2023
  */
 
-@Service
+
 @Transactional
+@Service
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
