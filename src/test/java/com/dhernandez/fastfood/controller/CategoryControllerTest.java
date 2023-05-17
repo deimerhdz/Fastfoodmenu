@@ -35,6 +35,7 @@ public class CategoryControllerTest {
 
 	@Autowired
 	private ObjectMapper objectMapper;
+	
 	@DisplayName("Test to save a category controller")
 	@Test
 	void TestSaveCategory() throws Exception {
@@ -130,6 +131,7 @@ public class CategoryControllerTest {
 	}
 	
 	@DisplayName("Test to update category controller no null")
+	@Test
 	void testUpdateCategoryNoNull() throws Exception {
 		//give
 		UserDto user = UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez")
@@ -153,6 +155,7 @@ public class CategoryControllerTest {
 	}
 	
 	@DisplayName("Test to delete category controller ")
+	@Test
 	void testDeleteCategory() throws Exception {
 		//give
 		UserDto user = UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez")

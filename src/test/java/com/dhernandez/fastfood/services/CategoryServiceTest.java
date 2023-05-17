@@ -103,7 +103,7 @@ public class CategoryServiceTest {
 		List<CategoryDto> listCategories = categoryService.listAllCategories(1l);
 		
 		//then
-		assertThat(listCategories.isEmpty());
+		assertThat(listCategories).isEmpty();
 		assertThat(listCategories.size()).isEqualTo(0);
 		
 	}
@@ -122,7 +122,7 @@ public class CategoryServiceTest {
 	
 	@DisplayName("Test to update category by id")
 	@Test
-	void testUpdateCategory() {
+	void fa() {
 		//given
 		given(categoryRepository.save(category)).willReturn(category);
 		category.setName("Picadas");
