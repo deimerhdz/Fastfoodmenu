@@ -16,15 +16,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto  implements Serializable{
-	
+public class CategoryDto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
-	private String username;
-	private String email;
-	private String password;
+	private String name;
 	private Boolean active;
+	private Long userId;
+	private UserDto user;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
-	private static final long serialVersionUID = 1L;
-
 }
