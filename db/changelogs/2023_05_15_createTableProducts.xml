@@ -13,7 +13,7 @@
             <column name="id" type="serial" autoIncrement="true" remarks="Identificador autoincremental">
                <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="varchar(20)" remarks="Nombre del producto">
+            <column name="name" type="varchar(100)" remarks="Nombre del producto">
                <constraints nullable="false"/>
             </column>
              <column name="description" type="varchar(255)" remarks="Descripcion del producto">
@@ -23,7 +23,7 @@
                <constraints nullable="false"/>
             </column>
             <column name="image_id" type="int"  remarks="Campo referencial de la imagen">
-               <constraints nullable="false" unique="true" />
+               <constraints nullable="true" unique="true" />
             </column>
             <column name="category_id" type="int" remarks="Campo referencial de la categoria">
                <constraints nullable="false"  />
