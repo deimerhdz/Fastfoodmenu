@@ -54,7 +54,7 @@ public class CategoryRepository implements ICategoryRepository{
 	@Override
 	public CategoryDto save(CategoryDto categoryDto) {
 		Logger.info("Accessing the method save(CategoryDto categoryDto)"+categoryDto);
-		CategoryDto userDB =this.categoryMapper.toCategoryDto(this.categoryCrudRepository.save(this.categoryMapper.toCategory(categoryDto))) ;
+		CategoryDto userDB =this.categoryMapper.toCategoryDto(this.categoryCrudRepository.save(this.categoryMapper.toCategory(categoryDto)));
 		Logger.info("Ending the method save(CategoryDto categoryDto)");
 		return userDB;
 	}
