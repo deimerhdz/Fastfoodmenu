@@ -5,12 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.management.loading.PrivateClassLoader;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import static org.mockito.BDDMockito.*;
@@ -20,12 +29,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.dhernandez.fastfood.domain.dto.CategoryDto;
+import com.dhernandez.fastfood.domain.dto.UserAuth;
 import com.dhernandez.fastfood.domain.dto.UserDto;
 import com.dhernandez.fastfood.domain.services.CategoryService;
+import com.dhernandez.fastfood.domain.services.UserDetailServiceImpl;
 import com.dhernandez.fastfood.web.controllers.CategoryController;
+import com.dhernandez.fastfood.web.security.JwtProvider;
+import com.dhernandez.fastfood.web.security.JwtTokenFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-@WebMvcTest(CategoryController.class)
+@AutoConfigureMockMvc(addFilters = false)
+@WebMvcTest( CategoryController.class)
 public class CategoryControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
@@ -36,6 +49,11 @@ public class CategoryControllerTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 	
+
+	@MockBean
+	JwtTokenFilter JwtTokenFilter;
+
+
 	@DisplayName("Test to save a category controller")
 	@Test
 	void TestSaveCategory() throws Exception {
@@ -69,6 +87,7 @@ public class CategoryControllerTest {
 		given(categoryService.listAllCategories(1l)).willReturn(listCategory);
 		// when
 		ResultActions response = mockMvc.perform(get("/categories/list-all/1"));
+				
 		// then
 		response.andExpect(status().isOk())
 		.andDo(print())
