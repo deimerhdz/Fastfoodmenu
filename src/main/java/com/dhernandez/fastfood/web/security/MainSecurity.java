@@ -46,6 +46,8 @@ public class MainSecurity {
 	        return http
 	                .csrf()
 	                .disable()
+	                .cors()
+	                .and()
 	                .authorizeHttpRequests()
 	                .requestMatchers("/auth/**","/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html")
 	                .permitAll()
