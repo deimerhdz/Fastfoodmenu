@@ -26,7 +26,8 @@ public class ProductDto  implements Serializable{
 	private Long userId;
 	private Long categoryId;
 	private CategoryDto category;
-	private UserDto user;
+	private Long imageId;
+	private ImageDto image;
 	private Boolean active;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;

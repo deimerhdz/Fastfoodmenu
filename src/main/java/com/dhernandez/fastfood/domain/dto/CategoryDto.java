@@ -2,7 +2,6 @@ package com.dhernandez.fastfood.domain.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +24,8 @@ public class CategoryDto implements Serializable{
 	private String name;
 	private Boolean active;
 	private Long userId;
-	private UserDto user;
+    private Long imageId;
+    private ImageDto image;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 }

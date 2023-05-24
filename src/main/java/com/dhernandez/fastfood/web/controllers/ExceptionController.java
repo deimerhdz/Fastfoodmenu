@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.dhernandez.fastfood.domain.dto.ErrorResponseDto;
 import com.dhernandez.fastfood.domain.dto.ValidationErrorDto;
+import com.dhernandez.fastfood.web.exceptions.ImageNoValidException;
 import com.dhernandez.fastfood.web.exceptions.UniqueException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +25,12 @@ public class ExceptionController {
 	
 	@ExceptionHandler({UniqueException.class})
     public ResponseEntity<ErrorResponseDto> uniqueException(HttpServletRequest peticion, UniqueException ex){
+
+        return buildResponse(peticion, HttpStatus.INTERNAL_SERVER_ERROR,ex.getMessage(),null);
+    }
+	
+	@ExceptionHandler({ImageNoValidException.class})
+    public ResponseEntity<ErrorResponseDto> uniqueException(HttpServletRequest peticion, ImageNoValidException ex){
 
         return buildResponse(peticion, HttpStatus.INTERNAL_SERVER_ERROR,ex.getMessage(),null);
     }
