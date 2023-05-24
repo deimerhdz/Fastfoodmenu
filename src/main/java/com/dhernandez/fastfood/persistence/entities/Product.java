@@ -3,7 +3,6 @@ package com.dhernandez.fastfood.persistence.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -52,6 +51,13 @@ public class Product implements Serializable{
 	@NotNull
 	private Long userId;
 	
+	@Column(name = "image_id")
+    private Long imageId;
+
+    @ManyToOne(fetch = FetchType.LAZY )
+    @JoinColumn(name = "image_id",updatable = false,insertable = false)
+    private Image image;
+
 	@Column(name="category_id")
 	@NotNull
 	private Long categoryId;

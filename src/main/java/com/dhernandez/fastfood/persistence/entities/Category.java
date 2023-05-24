@@ -41,6 +41,12 @@ public class Category  implements Serializable{
 	@Column(name="user_id")
 	private Long userId;
 	
+	@Column(name = "image_id")
+    private Long imageId;
+
+    @ManyToOne(fetch = FetchType.LAZY )
+    @JoinColumn(name = "image_id",updatable = false,insertable = false)
+    private Image image;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id",insertable = false,updatable = false)
