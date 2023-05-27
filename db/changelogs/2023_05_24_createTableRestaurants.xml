@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+     <changeSet id="2023052410" author="dhernandez">
+        <createTable tableName="tbl_restaurants">
+            <column name="id" type="serial" autoIncrement="true" remarks="Identificador autoincremental">
+               <constraints primaryKey="true" />
+            </column>
+            <column name="name" type="varchar(20)" remarks="Nombre del restaurante">
+               <constraints nullable="false"/>
+            </column>
+             <column name="description" type="varchar(255)" remarks="Descripcion del restaurante">
+               <constraints nullable="true"/>
+            </column>
+               <column name="address" type="varchar(150)" remarks="Direccion del restaurante">
+               <constraints nullable="true"/>
+            </column>
+              <column name="telephone" type="varchar(15)" remarks="Telefono del restaurante">
+               <constraints nullable="false"/>
+            </column>
+            <column name="icon_id" type="int" remarks="Campo referencial de la imagen">
+               <constraints nullable="true"  unique="true" />
+            </column>
+            <column name="user_id" type="int" remarks="Campo referencial del usuario">
+               <constraints nullable="false"  />
+            </column>
+            <column name="created_at" type="date" remarks="Fecha en la cual se creo el registro">
+               <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+          <dropTable tableName="tbl_restaurants"/>  
+        </rollback>
+     </changeSet>
+
+        <changeSet author="dhernandez" id="2023052411">
+        <addForeignKeyConstraint baseColumnNames="icon_id"
+            baseTableName="tbl_restaurants"
+            constraintName="fk_icon_id"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_images"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_restaurants" constraintName="fk_icon_id"/>
+            </rollback>
+     </changeSet>
+     <changeSet author="dhernandez" id="2023052412">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+            baseTableName="tbl_restaurants"
+            constraintName="fk_user_restaurant_id"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_users"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_restaurants" constraintName="fk_user_restaurant_id"/>
+            </rollback>
+     </changeSet>
+</databaseChangeLog>

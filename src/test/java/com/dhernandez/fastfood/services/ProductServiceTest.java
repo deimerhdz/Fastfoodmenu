@@ -50,7 +50,7 @@ public class ProductServiceTest {
 								.name("Pizzas")
 								.active(true)
 								.userId(user.getId())
-								.user(user)
+								
 								.createdAt(LocalDateTime.now())
 								.updatedAt(null)
 								.build();
@@ -63,7 +63,7 @@ public class ProductServiceTest {
 				  .categoryId(category.getId())
 				  .category(category)
 				  .userId(user.getId())
-				  .user(user)
+				
 				  .active(false)
 				  .createdAt(LocalDateTime.now())
 				  .build();
@@ -93,7 +93,7 @@ public class ProductServiceTest {
 				  .categoryId(category.getId())
 				  .category(category)
 				  .userId(user.getId())
-				  .user(user)
+				
 				  .active(true)
 				  .createdAt(LocalDateTime.now())
 				  .build();
@@ -179,7 +179,7 @@ public class ProductServiceTest {
 		  .categoryId(category.getId())
 		  .category(category)
 		  .userId(user.getId())
-		  .user(user)
+		  
 		  .active(true)
 		  .createdAt(LocalDateTime.now())
 		  .build();

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+     <changeSet id="2023052713" author="dhernandez">
+        <createTable tableName="tbl_tables">
+            <column name="id" type="serial" autoIncrement="true" remarks="Identificador autoincremental">
+               <constraints primaryKey="true" />
+            </column>
+            <column name="name" type="varchar(20)" remarks="Descripcion de la mesa">
+               <constraints nullable="false"/>
+            </column>
+             <column name="status" type="tinyint" remarks="Estado de la mesa">
+               <constraints nullable="false"/>
+            </column>
+             <column name="restaurant_id" type="int" remarks="Estado de la mesa">
+               <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="date" remarks="Fecha en la cual se creo el registro">
+               <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+          <dropTable tableName="tbl_tables"/>  
+        </rollback>
+     </changeSet>
+
+        <changeSet author="dhernandez" id="2023052714">
+        <addForeignKeyConstraint baseColumnNames="restaurant_id"
+            baseTableName="tbl_tables"
+            constraintName="fk_table_restaurant"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_restaurants"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_tables" constraintName="fk_table_restaurant"/>
+            </rollback>
+     </changeSet>
+</databaseChangeLog>

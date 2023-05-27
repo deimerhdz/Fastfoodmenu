@@ -61,7 +61,7 @@ public class CategoryControllerTest {
 		UserDto user = UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez")
 				.email("deimerhdz21@gmail.com").password("1233445").createdAt(LocalDateTime.now())
 				.updatedAt(LocalDateTime.now()).active(true).build();
-		CategoryDto category = CategoryDto.builder().name("Pizzas").active(true).userId(user.getId()).user(user)
+		CategoryDto category = CategoryDto.builder().name("Pizzas").active(true).userId(user.getId())
 				.createdAt(LocalDateTime.now()).updatedAt(null).build();
 		given(categoryService.save(any(CategoryDto.class))).willAnswer((invocation) -> invocation.getArgument(0));
 		// when
@@ -80,10 +80,10 @@ public class CategoryControllerTest {
 	void testListCategory() throws Exception {
 		// given
 		List<CategoryDto> listCategory = new ArrayList();
-		listCategory.add(CategoryDto.builder().name("Pizzas").active(true).userId(1l).user(UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez").email("deimerhdz21@gmail.com").password("1233445").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).active(true).build()).createdAt(LocalDateTime.now()).updatedAt(null).build());
-		listCategory.add(CategoryDto.builder().name("Perros Calientes").active(true).userId(1l).user(UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez").email("deimerhdz21@gmail.com").password("1233445").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).active(true).build()).createdAt(LocalDateTime.now()).updatedAt(null).build());
-		listCategory.add(CategoryDto.builder().name("Hamburguesas").active(true).userId(1l).user(UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez").email("deimerhdz21@gmail.com").password("1233445").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).active(true).build()).createdAt(LocalDateTime.now()).updatedAt(null).build());
-		listCategory.add(CategoryDto.builder().name("Picadas").active(true).userId(1l).user(UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez").email("deimerhdz21@gmail.com").password("1233445").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).active(true).build()).createdAt(LocalDateTime.now()).updatedAt(null).build());
+		listCategory.add(CategoryDto.builder().name("Pizzas").active(true).userId(1l).createdAt(LocalDateTime.now()).updatedAt(null).build());
+		listCategory.add(CategoryDto.builder().name("Perros Calientes").active(true).userId(1l).createdAt(LocalDateTime.now()).updatedAt(null).build());
+		listCategory.add(CategoryDto.builder().name("Hamburguesas").active(true).userId(1l).createdAt(LocalDateTime.now()).updatedAt(null).build());
+		listCategory.add(CategoryDto.builder().name("Picadas").active(true).userId(1l).createdAt(LocalDateTime.now()).updatedAt(null).build());
 		given(categoryService.listAllCategories(1l)).willReturn(listCategory);
 		// when
 		ResultActions response = mockMvc.perform(get("/categories/list-all/1"));
@@ -100,7 +100,7 @@ public class CategoryControllerTest {
 		UserDto user = UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez")
 				.email("deimerhdz21@gmail.com").password("1233445").createdAt(LocalDateTime.now())
 				.updatedAt(LocalDateTime.now()).active(true).build();
-		CategoryDto category = CategoryDto.builder().name("Pizzas").active(true).userId(user.getId()).user(user)
+		CategoryDto category = CategoryDto.builder().name("Pizzas").active(true).userId(user.getId())
 				.createdAt(LocalDateTime.now()).updatedAt(null).build();
 		given(categoryService.findById(1l)).willReturn(Optional.of(category));
 		// when
@@ -130,10 +130,10 @@ public class CategoryControllerTest {
 		UserDto user = UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez")
 				.email("deimerhdz21@gmail.com").password("1233445").createdAt(LocalDateTime.now())
 				.updatedAt(LocalDateTime.now()).active(true).build();
-		CategoryDto saveCategoryDB = CategoryDto.builder().name("Pizzas").active(true).userId(user.getId()).user(user)
+		CategoryDto saveCategoryDB = CategoryDto.builder().name("Pizzas").active(true).userId(user.getId())
 				.createdAt(LocalDateTime.now()).updatedAt(null).build();
 	
-		CategoryDto updatecategory = CategoryDto.builder().name("Picadas").active(true).userId(user.getId()).user(user)
+		CategoryDto updatecategory = CategoryDto.builder().name("Picadas").active(true).userId(user.getId())
 				.createdAt(LocalDateTime.now()).updatedAt(null).build();
 		given(categoryService.findById(1l)).willReturn(Optional.of(saveCategoryDB));
 		given(categoryService.save(any(CategoryDto.class))).willAnswer(invocation -> invocation.getArgument(0));
@@ -156,10 +156,10 @@ public class CategoryControllerTest {
 		UserDto user = UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez")
 				.email("deimerhdz21@gmail.com").password("1233445").createdAt(LocalDateTime.now())
 				.updatedAt(LocalDateTime.now()).active(true).build();
-		CategoryDto saveCategoryDB = CategoryDto.builder().name("Pizzas").active(true).userId(user.getId()).user(user)
+		CategoryDto saveCategoryDB = CategoryDto.builder().name("Pizzas").active(true).userId(user.getId())
 				.createdAt(LocalDateTime.now()).updatedAt(null).build();
 	
-		CategoryDto updatecategory = CategoryDto.builder().name("Picadas").active(true).userId(user.getId()).user(user)
+		CategoryDto updatecategory = CategoryDto.builder().name("Picadas").active(true).userId(user.getId())
 				.createdAt(LocalDateTime.now()).updatedAt(null).build();
 		given(categoryService.findById(1l)).willReturn(Optional.empty());
 		given(categoryService.save(any(CategoryDto.class))).willAnswer(invocation -> invocation.getArgument(0));
@@ -180,7 +180,7 @@ public class CategoryControllerTest {
 		UserDto user = UserDto.builder().id(Long.valueOf("1")).username("Deimer Hernandez")
 				.email("deimerhdz21@gmail.com").password("1233445").createdAt(LocalDateTime.now())
 				.updatedAt(LocalDateTime.now()).active(true).build();
-		CategoryDto categoryDB = CategoryDto.builder().name("Pizzas").active(true).userId(user.getId()).user(user)
+		CategoryDto categoryDB = CategoryDto.builder().name("Pizzas").active(true).userId(user.getId())
 				.createdAt(LocalDateTime.now()).updatedAt(null).build();
 	
 		

@@ -47,7 +47,7 @@ public class CategoryServiceTest {
 							.name("Pizzas")
 							.active(true)
 							.userId(user.getId())
-							.user(user)
+							
 							.createdAt(LocalDateTime.now())
 							.updatedAt(null)
 							.build();
@@ -82,7 +82,7 @@ public class CategoryServiceTest {
 							.name("Pizzas")
 							.active(true)
 							.userId(user.getId())
-							.user(user)
+							
 							.createdAt(LocalDateTime.now())
 							.updatedAt(null)
 							.build();

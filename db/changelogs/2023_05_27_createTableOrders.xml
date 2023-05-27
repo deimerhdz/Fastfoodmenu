@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+     <changeSet id="2023052715" author="dhernandez">
+        <createTable tableName="tbl_orders">
+            <column name="id" type="serial" autoIncrement="true" remarks="Identificador autoincremental">
+               <constraints primaryKey="true" />
+            </column>
+            <column name="restaurant_id" type="int" remarks="Campo referencial del restaurante">
+               <constraints nullable="false"/>
+            </column>
+             <column name="table_id" type="int" remarks="Campo referencial de la mesa">
+               <constraints nullable="true"/>
+            </column>
+            <column name="comment" type="varchar(255)" remarks="Comentario de la orden">
+               <constraints nullable="true"/>
+            </column>
+              <column name="status" type="varchar(30)" remarks="Estado de la orden">
+               <constraints nullable="false"/>
+            </column>
+            <column name="total" type="decimal(10,2)" remarks="Total de la orden">
+               <constraints nullable="true"  unique="true" />
+            </column>
+           
+            <column name="client_name" type="varchar(120)" remarks="Cliente">
+               <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="date" remarks="Fecha en la cual se creo el registro">
+               <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+          <dropTable tableName="tbl_orders"/>  
+        </rollback>
+     </changeSet>
+
+        <changeSet author="dhernandez" id="2023052716">
+        <addForeignKeyConstraint baseColumnNames="table_id"
+            baseTableName="tbl_orders"
+            constraintName="fk_order_table"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_tables"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_orders" constraintName="fk_order_table"/>
+            </rollback>
+     </changeSet>
+     <changeSet author="dhernandez" id="2023052717">
+        <addForeignKeyConstraint baseColumnNames="restaurant_id"
+            baseTableName="tbl_orders"
+            constraintName="fk_order_restaurant"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_restaurants"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_orders" constraintName="fk_order_restaurant"/>
+            </rollback>
+     </changeSet>
+</databaseChangeLog>

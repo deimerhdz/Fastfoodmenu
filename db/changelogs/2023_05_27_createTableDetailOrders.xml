@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+     <changeSet id="2023052718" author="dhernandez">
+        <createTable tableName="tbl_detail_orders">
+            <column name="code" type="serial" autoIncrement="true" remarks="Identificador autoincremental">
+               <constraints primaryKey="true" />
+            </column>
+            <column name="product_id" type="int" remarks="Campo referencial del produto">
+               <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="int" remarks="Campo referencial de la orden">
+               <constraints nullable="false"/>
+            </column>
+             <column name="quantity" type="int" remarks="Cantidad del producto">
+               <constraints nullable="false"/>
+            </column>
+            <column name="price" type="decimal(10,2)" remarks="Precio del producto">
+               <constraints nullable="false"/>
+            </column>
+            <column name="subtotal" type="decimal(10,2)" remarks="Subtotal">
+               <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+          <dropTable tableName="tbl_detail_orders"/>  
+        </rollback>
+     </changeSet>
+
+        <changeSet author="dhernandez" id="2023052719">
+        <addForeignKeyConstraint baseColumnNames="product_id"
+            baseTableName="tbl_detail_orders"
+            constraintName="fk_order_detail_product"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_products"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_detail_orders" constraintName="fk_order_detail_product"/>
+            </rollback>
+     </changeSet>
+     <changeSet author="dhernandez" id="2023052720">
+        <addForeignKeyConstraint baseColumnNames="order_id"
+            baseTableName="tbl_detail_orders"
+            constraintName="fk_detail_orders_order"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="tbl_orders"/>
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="tbl_detail_orders" constraintName="fk_detail_orders_order"/>
+            </rollback>
+     </changeSet>
+</databaseChangeLog>
