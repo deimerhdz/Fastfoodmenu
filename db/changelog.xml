@@ -15,4 +15,8 @@
 		<include file="changelogs/2023_05_15_createTableImages.xml"/>
 		<include file="changelogs/2023_05_15_createTableCategories.xml"/>
 		<include file="changelogs/2023_05_15_createTableProducts.xml"/>
+		<include file="changelogs/2023_05_24_createTableRestaurants.xml"/>
+		<include file="changelogs/2023_05_27_createTableTables.xml"/>
+		<include file="changelogs/2023_05_27_createTableOrders.xml"/>
+		<include file="changelogs/2023_05_27_createTableDetailOrders.xml"/>
 </databaseChangeLog>

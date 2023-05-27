@@ -58,12 +58,12 @@ public class ProductControllerTest {
 					.password("1233445").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).active(true)
 					.build();
 		 CategoryDto  category = CategoryDto.builder().id(1l).name("Pizzas").active(true)
-								.userId(user.getId()).user(user).createdAt(LocalDateTime.now()).updatedAt(null)
+								.userId(user.getId()).createdAt(LocalDateTime.now()).updatedAt(null)
 								.build();
 		   
 		 ProductDto product = ProductDto.builder().id(1l).name("Pizza napolitana").price(BigDecimal.valueOf(28000)).description("test")
 				  .categoryId(category.getId()).category(category).userId(user.getId())
-				  .user(user).active(true).createdAt(LocalDateTime.now())
+				  .active(true).createdAt(LocalDateTime.now())
 				  .build();
 		given(productService.save(any(ProductDto.class))).willAnswer((invocation) -> invocation.getArgument(0));
 		// when
@@ -90,16 +90,16 @@ public class ProductControllerTest {
 					.password("1233445").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).active(true)
 					.build();
 		 CategoryDto  category = CategoryDto.builder().id(1l).name("Pizzas").active(true)
-								.userId(user.getId()).user(user).createdAt(LocalDateTime.now()).updatedAt(null)
+								.userId(user.getId()).createdAt(LocalDateTime.now()).updatedAt(null)
 								.build();
 		   
 		 ProductDto product1 = ProductDto.builder().id(1l).name("Pizza napolitana").price(BigDecimal.valueOf(28000)).description("test")
 				  .categoryId(category.getId()).category(category).userId(user.getId())
-				  .user(user).active(true).createdAt(LocalDateTime.now())
+				  .active(true).createdAt(LocalDateTime.now())
 				  .build();
 		 ProductDto product2 = ProductDto.builder().id(1l).name("Pizza queso").price(BigDecimal.valueOf(28000)).description("test")
 				  .categoryId(category.getId()).category(category).userId(user.getId())
-				  .user(user).active(true).createdAt(LocalDateTime.now())
+				  .active(true).createdAt(LocalDateTime.now())
 				  .build();
 		 listProduct.add(product1);
 		 listProduct.add(product2);
@@ -120,12 +120,12 @@ public class ProductControllerTest {
 				.password("1233445").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).active(true)
 				.build();
 	 CategoryDto  category = CategoryDto.builder().id(1l).name("Pizzas").active(true)
-							.userId(user.getId()).user(user).createdAt(LocalDateTime.now()).updatedAt(null)
+							.userId(user.getId()).createdAt(LocalDateTime.now()).updatedAt(null)
 							.build();
 	   
 	 ProductDto product1 = ProductDto.builder().id(1l).name("Pizza napolitana").price(BigDecimal.valueOf(28000)).description("test")
 			  .categoryId(category.getId()).category(category).userId(user.getId())
-			  .user(user).active(true).createdAt(LocalDateTime.now())
+			  .active(true).createdAt(LocalDateTime.now())
 			  .build();
 		given(productService.findById(1l)).willReturn(Optional.of(product1));
 		// when
@@ -161,17 +161,17 @@ public class ProductControllerTest {
 				.password("1233445").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).active(true)
 				.build();
 	   CategoryDto  category = CategoryDto.builder().id(1l).name("Pizzas").active(true)
-							.userId(user.getId()).user(user).createdAt(LocalDateTime.now()).updatedAt(null)
+							.userId(user.getId()).createdAt(LocalDateTime.now()).updatedAt(null)
 							.build();
 	   
 	  ProductDto saveProduct = ProductDto.builder().id(1l).name("Pizza napolitana").price(BigDecimal.valueOf(28000)).description("test")
 			  .categoryId(category.getId()).category(category).userId(user.getId())
-			  .user(user).active(true).createdAt(LocalDateTime.now())
+			 .active(true).createdAt(LocalDateTime.now())
 			  .build();
 	 
 	  ProductDto updatedProduct = ProductDto.builder().id(1l).name("Pizza napolitana").price(BigDecimal.valueOf(28000)).description("test")
 			  .categoryId(category.getId()).category(category).userId(user.getId())
-			  .user(user).active(true).createdAt(LocalDateTime.now())
+			  .active(true).createdAt(LocalDateTime.now())
 			  .build();
 		given(productService.findById(1l)).willReturn(Optional.of(saveProduct));
 		
@@ -200,12 +200,12 @@ public class ProductControllerTest {
 				.password("1233445").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).active(true)
 				.build();
 	   CategoryDto  category = CategoryDto.builder().id(1l).name("Pizzas").active(true)
-							.userId(user.getId()).user(user).createdAt(LocalDateTime.now()).updatedAt(null)
+							.userId(user.getId()).createdAt(LocalDateTime.now()).updatedAt(null)
 							.build();
 
 	  ProductDto updatedProduct = ProductDto.builder().id(1l).name("Pizza napolitana").price(BigDecimal.valueOf(28000)).description("test")
 			  .categoryId(category.getId()).category(category).userId(user.getId())
-			  .user(user).active(true).createdAt(LocalDateTime.now())
+			  .active(true).createdAt(LocalDateTime.now())
 			  .build();
 		given(productService.findById(1l)).willReturn(Optional.empty());
 		
@@ -227,12 +227,11 @@ public class ProductControllerTest {
 					.password("1233445").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).active(true)
 					.build();
 		 CategoryDto  category = CategoryDto.builder().id(1l).name("Pizzas").active(true)
-								.userId(user.getId()).user(user).createdAt(LocalDateTime.now()).updatedAt(null)
+								.userId(user.getId()).createdAt(LocalDateTime.now()).updatedAt(null)
 								.build();
 		   
 		 ProductDto product1 = ProductDto.builder().id(1l).name("Pizza napolitana").price(BigDecimal.valueOf(28000)).description("test")
 				  .categoryId(category.getId()).category(category).userId(user.getId())
-				  .user(user).active(true).createdAt(LocalDateTime.now())
 				  .build();
 		
 		 given(productService.findById(1l)).willReturn(Optional.of(product1));
